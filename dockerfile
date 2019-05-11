@@ -37,8 +37,10 @@ RUN set -ex && \
     rm /bin/sh && \
     ln -sv /bin/bash /bin/sh && \
     echo "auth required pam_wheel.so use_uid" >> /etc/pam.d/su && \
+    mkdir -p /opt/sparklyr && \
     chgrp root /etc/passwd && chmod ug+rw /etc/passwd
 
+COPY sparklyr /opt/sparklyr
 COPY ${spark_jars} /opt/spark/jars
 COPY bin /opt/spark/bin
 COPY sbin /opt/spark/sbin
